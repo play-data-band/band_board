@@ -5,11 +5,14 @@ import com.example.bandboard.domain.request.BoardRequest;
 import com.example.bandboard.domain.request.MemberUpdateRequest;
 import com.example.bandboard.domain.response.BoardResponse;
 import com.example.bandboard.repository.BoardRepository;
+import com.example.bandboard.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +25,7 @@ public class BoardService {
         boardRepository.save(boardRequest.toEntity(communityId));
     }
 
-    public void updateBoard(BoardRequest boardRequest, Long boardId){
+    public void updateBoard(BoardRequest boardRequest, UUID boardId){
         //예외처리 필요하긴 함
         Board board = boardRepository.findById(boardId).get();
         board.setContent(boardRequest.getContent());
@@ -51,7 +54,7 @@ public class BoardService {
     }
 
 
-    public void deleteByBoardId(Long boardId){
+    public void deleteByBoardId(UUID boardId){
         boardRepository.deleteById(boardId);
     }
 

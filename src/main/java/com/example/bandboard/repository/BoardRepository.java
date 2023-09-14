@@ -9,7 +9,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface BoardRepository extends JpaRepository<Board, Long> {
+import java.util.UUID;
+
+public interface BoardRepository extends JpaRepository<Board, UUID> {
     @Query("select new com.example.bandboard.domain.response.BoardResponse(b.id,b.title,b.content,b.memberId,b.memberImage,b.memberName) " +
             "from Board b " +
             "where b.communityId = :communityId ")

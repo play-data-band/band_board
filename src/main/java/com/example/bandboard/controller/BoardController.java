@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/board")
@@ -25,7 +27,7 @@ public class BoardController{
     }
 
     @PutMapping("/{boardId}")
-    public void updateBoard(@PathVariable("boardId")Long boardId,
+    public void updateBoard(@PathVariable("boardId") UUID boardId,
                             @RequestBody BoardRequest boardRequest){
         boardService.updateBoard(boardRequest, boardId);
     }
@@ -44,7 +46,7 @@ public class BoardController{
 
     //프론트단에서 memberId로 삭제 권한 부여됨
     @DeleteMapping("/{boardId}")
-    public void deleteBoard(@PathVariable("boardId")Long boardId){
+    public void deleteBoard(@PathVariable("boardId")UUID boardId){
         boardService.deleteByBoardId(boardId);
     }
 
