@@ -22,6 +22,7 @@ public class Board {
     private String memberImage;
     private String memberName;
     private Long communityId;
-    private Long likeCount;
+    private Integer likeCount = 0;
+
 
 }

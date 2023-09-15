@@ -38,6 +38,12 @@ public class BoardController{
         boardService.updateBoardMember(memberUpdateRequest, memberId);
     }
 
+    @PutMapping("/likeCountUpdate/{boardId}")
+    public void updateLikeCount(@PathVariable("boardId") UUID boardId,
+                                @RequestBody Integer count) {
+        boardService.likeCountUpdate(boardId, count);
+    }
+
     @PostMapping("/{communityId}")
     public void saveBoard(@PathVariable("communityId")Long communityId,
                           @RequestBody BoardRequest boardRequest){

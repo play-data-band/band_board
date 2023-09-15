@@ -47,7 +47,11 @@ public class BoardService {
             throw new Exception("NULL REQUEST");
         }
     }
-
+    @Transactional
+    public void likeCountUpdate(UUID boardId, Integer count) {
+        Board board = boardRepository.findById(boardId).get();
+        board.setLikeCount(board.getLikeCount() + count);
+    }
 
     public Page<BoardResponse> findBycommunityId(Long communityId, PageRequest pageRequest){
         return boardRepository.findBycommunity(communityId, pageRequest);
