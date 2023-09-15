@@ -1,5 +1,6 @@
 package com.example.bandboard.controller;
 
+import com.example.bandboard.domain.entity.Comment;
 import com.example.bandboard.domain.request.CommentRequest;
 import com.example.bandboard.domain.response.CommentResponse;
 import com.example.bandboard.service.CommentService;
@@ -20,14 +21,14 @@ public class CommentController {
         commentService.save(request);
     }
 
-    @DeleteMapping("{id}")
-    public void deleteById(@PathVariable("id") Long id) {
+    @DeleteMapping("{commentId}")
+    public void deleteById(@PathVariable("commentId") Long id) {
         commentService.deleteById(id);
     }
 
     @GetMapping("{targetId}")
-    public List<CommentResponse> getAll(@PathVariable("targetId") UUID targetId) {
-        return commentService.findAll(targetId);
+    public List<Comment> getAll(@PathVariable("targetId") UUID targetId) {
+        return commentService.findAllByTargetId(targetId);
     }
 
     @PutMapping("{commentId}")

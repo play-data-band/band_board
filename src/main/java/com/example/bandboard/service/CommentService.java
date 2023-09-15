@@ -6,6 +6,7 @@ import com.example.bandboard.domain.response.CommentResponse;
 import com.example.bandboard.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,10 @@ public class CommentService {
     public void save(CommentRequest request) {
         Comment comment = Comment.builder()
                 .content(request.getContent())
+                .memberName(request.getMemberName())
+                .memberImage(request.getMemberImage())
                 .targetId(request.getTargetId())
+                .memberId(request.getMemberId())
                 .build();
         commentRepository.save(comment);
     }
@@ -29,16 +33,15 @@ public class CommentService {
         commentRepository.deleteById(id);
     }
 
-    public List<CommentResponse> findAll(UUID targetId) {
+    public List<Comment> findAllByTargetId(UUID targetId) {
         return commentRepository.findAllByTargetId(targetId);
     }
 
+    @Transactional
     public void updateComment(Long commentId, CommentRequest request) {
         Comment comment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new RuntimeException("Comment not found"));
         comment.setContent(request.getContent());
-        commentRepository.save(comment);
-
     }
 
 }

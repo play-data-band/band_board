@@ -16,7 +16,7 @@ public class Comment {
     private Long id;
     private String content;
     private UUID targetId;
-    private Long albumId;
+    private Long memberId;
     private String memberImage;
     private String memberName;
 

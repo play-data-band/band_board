@@ -11,9 +11,8 @@ import java.util.UUID;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    @Query("select new com.example.bandboard.domain.response.CommentResponse(c) " +
-            "from Comment c " +
-            "where c.targetId = :targetId")
-    List<CommentResponse> findAllByTargetId(@Param("targetId")UUID targetId);
+
+
+    List<Comment> findAllByTargetId(UUID targetId);
 
 }
