@@ -25,6 +25,7 @@ public class BoardRequest {
                 .content(content)
                 .memberId(memberId)
                 .memberName(memberName)
+                .memberImage(memberImage)
                 .communityId(communityId)
                 .build();
     }

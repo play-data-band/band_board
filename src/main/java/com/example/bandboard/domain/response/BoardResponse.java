@@ -16,5 +16,5 @@ public class BoardResponse {
     private Long memberId;
     private String memberImage;
     private String memberName;
-
+    private int likeCount;
 }

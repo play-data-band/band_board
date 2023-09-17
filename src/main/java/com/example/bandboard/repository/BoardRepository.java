@@ -12,7 +12,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.UUID;
 
 public interface BoardRepository extends JpaRepository<Board, UUID> {
-    @Query("select new com.example.bandboard.domain.response.BoardResponse(b.id,b.title,b.content,b.memberId,b.memberImage,b.memberName) " +
+    @Query("select new com.example.bandboard.domain.response.BoardResponse(b.id,b.title,b.content,b.memberId,b.memberImage,b.memberName, b.likeCount) " +
             "from Board b " +
             "where b.communityId = :communityId ")
     Page<BoardResponse> findBycommunity(@Param("communityId")Long communityId, PageRequest pageRequest);

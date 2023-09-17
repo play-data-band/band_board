@@ -20,6 +20,7 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+
     //여기서 만약에 데이터베이스를 나누면 community에 Board 저장하도록 api 날려야함
     public void save(BoardRequest boardRequest, Long communityId){
         boardRepository.save(boardRequest.toEntity(communityId));
@@ -51,6 +52,7 @@ public class BoardService {
     public void likeCountUpdate(UUID boardId, Integer count) {
         Board board = boardRepository.findById(boardId).get();
         board.setLikeCount(board.getLikeCount() + count);
+
     }
 
     public Page<BoardResponse> findBycommunityId(Long communityId, PageRequest pageRequest){

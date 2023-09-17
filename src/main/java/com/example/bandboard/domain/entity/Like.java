@@ -1,9 +1,6 @@
 package com.example.bandboard.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -14,7 +11,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "likes")
 public class Like {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private UUID targetId;
