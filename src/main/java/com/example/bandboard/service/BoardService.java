@@ -5,7 +5,6 @@ import com.example.bandboard.domain.request.BoardRequest;
 import com.example.bandboard.domain.request.MemberUpdateRequest;
 import com.example.bandboard.domain.response.BoardResponse;
 import com.example.bandboard.repository.BoardRepository;
-import com.example.bandboard.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +18,7 @@ import java.util.UUID;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+
 
     //여기서 만약에 데이터베이스를 나누면 community에 Board 저장하도록 api 날려야함
     public void save(BoardRequest boardRequest, Long communityId){
@@ -61,6 +61,8 @@ public class BoardService {
     public void deleteByBoardId(UUID boardId){
         boardRepository.deleteById(boardId);
     }
+
+
 
 
 }
