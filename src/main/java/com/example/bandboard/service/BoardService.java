@@ -5,7 +5,6 @@ import com.example.bandboard.domain.request.BoardRequest;
 import com.example.bandboard.domain.request.MemberUpdateRequest;
 import com.example.bandboard.domain.response.BoardResponse;
 import com.example.bandboard.repository.BoardRepository;
-import com.example.bandboard.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -50,9 +49,15 @@ public class BoardService {
     }
     @Transactional
     public void likeCountUpdate(UUID boardId, Integer count) {
+        System.out.println("서비스까지 오네 ?");
+        System.out.println(boardId);
+        System.out.println(count);
         Board board = boardRepository.findById(boardId).get();
-        board.setLikeCount(board.getLikeCount() + count);
 
+        System.out.println(board.getLikeCount());
+        System.out.println(count);
+
+        board.setLikeCount(board.getLikeCount() + count);
     }
 
     public Page<BoardResponse> findBycommunityId(Long communityId, PageRequest pageRequest){
@@ -63,6 +68,5 @@ public class BoardService {
     public void deleteByBoardId(UUID boardId){
         boardRepository.deleteById(boardId);
     }
-
 
 }
